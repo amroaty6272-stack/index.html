@@ -1,0 +1,134 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    background: rgb(212, 79, 212);
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.character {
+    width: 200px;
+    font-size: 140px;
+    text-align: center;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-15px); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+
+.login-box {
+    width: 340px;
+    color: white;
+    text-align: center;
+}
+
+.login-box h1 {
+    margin: 0 0 6px;
+    font-size: 28px;
+}
+
+.sub {
+    margin: 0 0 24px;
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+.login-box label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+}
+
+.field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    color: #555;
+    padding: 0 14px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    transition: box-shadow 0.2s;
+}
+
+.field:focus-within {
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+.field input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 13px 0;
+    font-size: 14px;
+    background: transparent;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 6px;
+    background: #5b5bd6;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.login-box button:hover {
+    background: #4a4ac4;
+    animation: none;
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.error {
+    margin: 12px 0 0;
+    font-size: 14px;
+    color: #fff;
+    min-height: 18px;
+}
+
+/* Stagger: كل عنصر بيدخل بعد اللي قبله */
+.login-box > * {
+    opacity: 0;
+    animation: slideUp 0.6s ease-out forwards;
+}
+
+.login-box > *:nth-child(1) { animation-delay: 0.1s; }   /* العنوان */
+.login-box > *:nth-child(2) { animation-delay: 0.25s; }  /* الوصف */
+.login-box > *:nth-child(3) { animation-delay: 0.4s; }   /* label الأول */
+.login-box > *:nth-child(4) { animation-delay: 0.55s; }  /* حقل الـ username */
+.login-box > *:nth-child(5) { animation-delay: 0.7s; }   /* label التاني */
+.login-box > *:nth-child(6) { animation-delay: 0.85s; }  /* حقل الـ password */
+.login-box > *:nth-child(7) { animation-delay: 1s; }     /* الزرار */
+.login-box > *:nth-child(8) { animation-delay: 1.15s; }  /* رسالة الخطأ */
+
+
+@media (max-width: 700px) {
+    .character { display: none; }
+}
+
+Makeup {
+   background-color: yellow;
+   boarder: 2px solid;
+   padding: 5px;
+
+}
