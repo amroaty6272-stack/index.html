@@ -1,0 +1,77 @@
+const PRODUCTS = [
+ 
+    {
+        id: "foundation",
+        name: "Foundation",
+        category: "Face",
+        price: 480,
+        image: "images/Powder-Foundation-in-Compact-100C.webp",
+        description: "A lightweight liquid foundation that blends easily for natural, buildable coverage.",
+        howToUse: "Apply to cleansed skin with a brush, sponge or fingers. Build up coverage in thin layers. Always follow with SPF during the day.",
+        ingredients: "Water, Dimethicone, Glycerin, Titanium Dioxide, Iron Oxides, Phenoxyethanol.",
+    },
+    {
+        id: "mascara",
+        name: "Mascara",
+        category: "Eyes",
+        price: 190,
+        image: "images/CREAMCONCEALER-320N.webp",
+        description: "A volumizing mascara that lifts and defines lashes without clumping.",
+        howToUse: "Wiggle the wand from root to tip. Apply a second coat once the first has dried for extra volume.",
+        ingredients: "Water, Beeswax, Carnauba Wax, Iron Oxides, Panthenol.",
+    },
+    {
+        id: "eyeshadow",
+        name: "Eyeshadow Palette",
+        category: "Eyes",
+        price: 620,
+        image: "kda.png",
+        description: "A warm-toned eyeshadow palette with matte and shimmer finishes for day-to-night looks.",
+        howToUse: "Apply lighter shades to the lid, deeper shades to the crease, and blend with a soft brush.",
+        ingredients: "Talc, Mica, Magnesium Stearate, Iron Oxides, Dimethicone.",
+    },
+    {
+        id: "sponge",
+        name: "Blending Sponge Set",
+        category: "Tools",
+        price: 340,
+        image: "images/Blender.webp",
+        description: "A set of two soft-touch blending sponges for seamless foundation and concealer application.",
+        howToUse: "Dampen slightly before use. Bounce gently onto skin to blend product without streaking.",
+        ingredients: "Latex-free polyurethane foam.",
+    },
+    {
+        id: "brush",
+        name: "Foundation Brush",
+        category: "Tools",
+        price: 480,
+        image: "images/etal-foundation-brush.webp",
+        description: "A dense, flat-top brush designed for streak-free liquid and cream foundation application.",
+        howToUse: "Swirl a small amount of product onto the brush and buff in circular motions across the face.",
+        ingredients: "Synthetic bristles, aluminium ferrule, wooden handle.",
+    },
+    {
+        id: "sharpener",
+        name: "Sharpener",
+        category: "Tools",
+        price: 150,
+        image: "images/etal-precision-brush.webp",
+        description: "A precision sharpener to keep your eyeliner and lip liner crisp and clean.",
+        howToUse: "Insert the pencil and twist gently until the tip is sharp. Wipe the blade clean after each use.",
+        ingredients: "Stainless steel blade, ABS plastic housing.",
+    },
+    {
+        id: "primer",
+        name: "Radiant Primer",
+        category: "Face",
+        price: 890,
+        image: "images/Radiant-Primer-Pack.webp",
+        description: "A glow-boosting primer that smooths the skin's surface and preps it for makeup application.",
+        howToUse: "Apply a pea-sized amount to cleansed skin, morning and/or evening. Introduce gradually as your skin adjusts. Always follow with SPF during the day.",
+        ingredients: "Water, Squalane, Niacinamide, Glycerin, Dimethicone.",
+    },
+];
+
+function getProductById(id) {
+    return PRODUCTS.find(function (p) { return p.id === id; });
+}

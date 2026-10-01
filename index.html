@@ -1,12 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Makeup Website</title>
+    <title>Nours Makeup</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet">
 </head>
 
 <body>
+<nav>
+    <div class="cart-panel" id="cartPanel">
+    <button class="close-btn" id="closeCart" type="button">Close</button>
+    <ul id="cartItems"></ul>
+    <p id="cartTotal"></p>
+    <button class="checkout-btn" id="checkoutBtn" type="button">Checkout</button>
+</div>
+
+   <div class="nav-logo">...</div>
+    <div class="nav-links">
+        <a href="#" id="HomeBtn">Home</a>
+        <a href="#">BLOG</a>
+        <a href="#">ABOUT</a>
+        <a href="#">CONTACT</a>
+        <a href="#" id="logoutBtn">LOGOUT</a>
+    </div>
+    <div class="nav-cart">...</div>
+</nav>
+    
+    
+    </nav>
+ 
+
 
 <div class="consent-overlay" id="consentOverlay">
     <div class="consent-box">
@@ -20,18 +43,13 @@
 </div>
 
 
-
-
-
-</div>
-
-
 <div class="cart-panel" id="cartPanel">
-    <!-- <h3> Cart</h3> -->
+    <button class="close-btn" id="closeCart" type="button">Close</button>
     <ul id="cartItems"></ul>
     <p id="cartTotal"></p>
     <button class="checkout-btn" id="checkoutBtn" type="button">Checkout</button>
 </div>
+
 
 <div class="checkout-overlay" id="checkoutOverlay">
     <div class="checkout-box">
@@ -43,27 +61,6 @@
     </div>
 </div>
 
-<input type="checkbox" id="menuToggle" class="menu-toggle">
-<label for="menuToggle" class="menu-btn">☰</label>
-<aside class="sidebar">
-    <div class="side-logo">Nours</div>
-
-    <nav class="side-menu">
-        <a href="#top" class="side-link active">+ New</a>
-        <a href="#products" class="side-link">Products</a>
-        <a href="#offers" class="side-link">Offers</a>
-        <a href="cart.html" class="side-link">Cart</a>
-    </nav>
-
-    <h4 class="side-title">Categories</h4>
-    <ul class="side-list">
-        <li><a href="#lipstick">Lipstick</a></li>
-        <li><a href="#foundation">Foundation</a></li>
-        <li><a href="#mascara">Mascara</a></li>
-        <li><a href="#eyeshadow">Eyeshadow</a></li>
-    </ul>
-
-    <a href="#" class="side-link" id="logoutBtn">Logout</a>
 </aside>
 
 <main class="content">
@@ -78,21 +75,19 @@
     </a>
 <h1 class="logo">Nours Makeup</h1>
 
-    
 <form class="search-bar" id="searchForm">
     <input type="text" id="searchInput" placeholder="What are you looking for?">
-
     <div class="select-wrap">
         <select>
-            <option>Shots</option>
-            <option>Projects</option>
-            <option>Designers</option>
+            <option>All</option>
+            <option>Face</option>
+            <option>Eyes</option>
+            <option>Tools</option>
         </select>
         <svg class="chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 9l6 6 6-6"/>
         </svg>
     </div>
-
     <button class="search-btn" type="submit">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="7"/>
@@ -100,122 +95,23 @@
         </svg>
     </button>
 </form>
-    <section class="products">
+
+<div class="hero-banner">
+    <img src="images/cocooo.jpg" alt="Nours Makeup">
+    <div class="hero-text">Nours Makeup</div>
+</div>
+
+
+
+    <section class="products" id="products">
         <h3 class="section-title">Makeup</h3>
-         
-
-
-
-        <div class="grid">
-
-            <div class="card" data-name="Package" data-price="250">
-                <img src="MAKEUP.png" alt="package">
-                <h3>Package</h3>
-                <p class="price">250 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div>
-
-            <div class="card" data-name="Foundation" data-price="480">
-                <img src="fe.png" alt="Foundation">
-                <h3>Foundation</h3>
-                <p class="price">480 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div>
-
-            <div class="card" data-name="Mascara" data-price="190">
-                <img src="roug.png" alt="roug">S
-                <h3>Mascara</h3>
-                <p class="price">190 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div>
-
-            <div class="card" data-name="Eyeshadow Palette" data-price="620">
-                <img src="kda.png" alt="roug">
-                <h3>Eyeshadow Palette</h3>
-                <p class="price">620 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div>
-                        <div class="card" data-name="Eyeshadow Palette" data-price="620">
-                <img src="kda.png" alt="roug">
-                <h3>Eyeshadow Palette</h3>
-                <p class="price">620 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div>
-                        <div class="card" data-name="Eyeshadow Palette" data-price="620">
-                <img src="kda.png" alt="roug">
-                <h3>Eyeshadow Palette</h3>
-                <p class="price">620 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div>
-                        <div class="card" data-name="Eyeshadow Palette" data-price="620">
-                <img src="kda.png" alt="roug">
-                <h3>Eyeshadow Palette</h3>
-                <p class="price">620 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div>
-                        <div class="card" data-name="Eyeshadow Palette" data-price="620">
-                <img src="kda.png" alt="roug">
-                <h3>Eyeshadow Palette</h3>
-                <p class="price">620 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div>
-                        <div class="card" data-name="Eyeshadow Palette" data-price="620">
-                <img src="kda.png" alt="roug">
-                <h3>Eyeshadow Palette</h3>
-                <p class="price">620 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div>
-                        <div class="card" data-name="Eyeshadow Palette" data-price="620">
-                <img src="kda.png" alt="roug">
-                <h3>Eyeshadow Palette</h3>
-                <p class="price">620 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div>
-                        <div class="card" data-name="Eyeshadow Palette" data-price="620">
-                <img src="kda.png" alt="roug">
-                <h3>Eyeshadow Palette</h3>
-                <p class="price">620 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div>
-                 <div class="card" data-name="Mascara" data-price="190">
-                <img src="roug.png" alt="roug">S
-                <h3>Mascara</h3>
-                <p class="price">190 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div
-                        </div>
-                 <div class="card" data-name="Mascara" data-price="190">
-                <img src="roug.png" alt="roug">S
-                <h3>Mascara</h3>
-                <p class="price">190 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div
-                        </div>
-                 <div class="card" data-name="Mascara" data-price="190">
-                <img src="roug.png" alt="roug">S
-                <h3>Mascara</h3>
-                <p class="price">190 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div
-                        </div>
-                 <div class="card" data-name="Mascara" data-price="190">
-                <img src="roug.png" alt="roug">S
-                <h3>Mascara</h3>
-                <p class="price">190 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div
-                        </div>
-                 <div class="card" data-name="Mascara" data-price="190">
-                <img src="roug.png" alt="roug">S
-                <h3>Mascara</h3>
-                <p class="price">190 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div
-            
-
-        </div>
+        <div class="grid" id="productGrid"></div>
     </section>
 
+    <!-- <h3 class="section-title" id="offers">Offers 20%</h3> -->
+    <!-- <div class="grid" id="offerGrid"></div> -->
+
+</main>
 
 <script>
     if (localStorage.getItem("loggedIn") !== "yes") {
@@ -223,142 +119,9 @@
     }
 </script>
 
-
-    <div class="cart-panel" id="cartPanel">
-        <h3></h3>
-        <ul id="cartItems"></ul>
-        <p id="cartTotal"></p>
-    </div>
-
-</main>
-
-<h3 class="section-title" id="offers">Offers 20%</h3>
-
-
-
-
-   <div class="grid">
-
-            <div class="card" data-name="Package" data-price="250">
-                <img src="MAKEUP.png" alt="package">
-                <h3>Package</h3>
-                <p class="price">250 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div>
-
-            <div class="card" data-name="Foundation" data-price="480">
-                <img src="fe.png" alt="Foundation">
-                <h3>Foundation</h3>
-                <p class="price">480 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div>
-
-            <div class="card" data-name="Mascara" data-price="190">
-                <img src="roug.png" alt="roug">S
-                <h3>Mascara</h3>
-                <p class="price">190 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div>
-
-            <div class="card" data-name="Eyeshadow Palette" data-price="620">
-                <img src="kda.png" alt="roug">
-                <h3>Eyeshadow Palette</h3>
-                <p class="price">620 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div>
-                        <div class="card" data-name="Eyeshadow Palette" data-price="620">
-                <img src="kda.png" alt="roug">
-                <h3>Eyeshadow Palette</h3>
-                <p class="price">620 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div>
-                        <div class="card" data-name="Eyeshadow Palette" data-price="620">
-                <img src="kda.png" alt="roug">
-                <h3>Eyeshadow Palette</h3>
-                <p class="price">620 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div>
-                        <div class="card" data-name="Eyeshadow Palette" data-price="620">
-                <img src="kda.png" alt="roug">
-                <h3>Eyeshadow Palette</h3>
-                <p class="price">620 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div>
-                        <div class="card" data-name="Eyeshadow Palette" data-price="620">
-                <img src="kda.png" alt="roug">
-                <h3>Eyeshadow Palette</h3>
-                <p class="price">620 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div>
-                        <div class="card" data-name="Eyeshadow Palette" data-price="620">
-                <img src="kda.png" alt="roug">
-                <h3>Eyeshadow Palette</h3>
-                <p class="price">620 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div>
-                        <div class="card" data-name="Eyeshadow Palette" data-price="620">
-                <img src="kda.png" alt="roug">
-                <h3>Eyeshadow Palette</h3>
-                <p class="price">620 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div>
-                        <div class="card" data-name="Eyeshadow Palette" data-price="620">
-                <img src="kda.png" alt="roug">
-                <h3>Eyeshadow Palette</h3>
-                <p class="price">620 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div>
-                 <div class="card" data-name="Mascara" data-price="190">
-                <img src="roug.png" alt="roug">S
-                <h3>Mascara</h3>
-                <p class="price">190 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div
-            
-                        </div>
-                 <div class="card" data-name="Mascara" data-price="190">
-                <img src="roug.png" alt="roug">S
-                <h3>Mascara</h3>
-                <p class="price">190 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div
-                        </div>
-                 <div class="card" data-name="Mascara" data-price="190">
-                <img src="roug.png" alt="roug">S
-                <h3>Mascara</h3>
-                <p class="price">190 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div
-                        </div>
-                 <div class="card" data-name="Mascara" data-price="190">
-                <img src="roug.png" alt="roug">S
-                <h3>Mascara</h3>
-                <p class="price">190 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div
-                        </div>
-                 <div class="card" data-name="Mascara" data-price="190">
-                <img src="roug.png" alt="roug">S
-                <h3>Mascara</h3>
-                <p class="price">190 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div
-                        </div>
-                 <div class="card" data-name="Mascara" data-price="190">
-                <img src="roug.png" alt="roug">S
-                <h3>Mascara</h3>
-                <p class="price">190 EGP</p>
-                <button class="add-btn" type="button">Add to Cart</button>
-            </div
-
-        </div>
-    </section>
-
-
-  
-
-
+<script src="products.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
+

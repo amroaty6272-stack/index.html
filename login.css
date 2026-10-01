@@ -6,12 +6,42 @@ body {
     margin: 0;
     min-height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    gap: 40px;
-    background: rgb(212, 79, 212);
+    background: linear-gradient(180deg, #f7ded9 0%, #faf1ec 100%);
     font-family: Arial, sans-serif;
     overflow: hidden;
+}
+
+.login-hero {
+    width: 100%;
+    height: 110px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.login-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.login-hero .hero-text {
+    position: absolute;
+    left: 30px;
+    bottom: 14px;
+    color: #1c1c1c;
+    font-family: 'Yellowtail', cursive;
+    font-size: 22px;
+    text-shadow: 0 2px 10px rgba(255,255,255,0.6);
+}
+
+.login-box-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
 .character {
@@ -31,11 +61,15 @@ body {
     to   { opacity: 1; transform: translateY(0); }
 }
 
-
 .login-box {
     width: 340px;
-    color: white;
+    color: #1c1c1c;
     text-align: center;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 36px 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border: 1px solid #ece8e2;
 }
 
 .login-box h1 {
@@ -59,10 +93,10 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: white;
+    background: #f4f2ee;
     color: #555;
     padding: 0 14px;
-    border-radius: 6px;
+    border-radius: 8px;
     margin-bottom: 16px;
     transition: box-shadow 0.2s;
 }
@@ -102,33 +136,24 @@ body {
 .error {
     margin: 12px 0 0;
     font-size: 14px;
-    color: #fff;
+    color: #c0392b;
     min-height: 18px;
 }
 
-/* Stagger: كل عنصر بيدخل بعد اللي قبله */
 .login-box > * {
     opacity: 0;
     animation: slideUp 0.6s ease-out forwards;
 }
 
-.login-box > *:nth-child(1) { animation-delay: 0.1s; }   /* العنوان */
-.login-box > *:nth-child(2) { animation-delay: 0.25s; }  /* الوصف */
-.login-box > *:nth-child(3) { animation-delay: 0.4s; }   /* label الأول */
-.login-box > *:nth-child(4) { animation-delay: 0.55s; }  /* حقل الـ username */
-.login-box > *:nth-child(5) { animation-delay: 0.7s; }   /* label التاني */
-.login-box > *:nth-child(6) { animation-delay: 0.85s; }  /* حقل الـ password */
-.login-box > *:nth-child(7) { animation-delay: 1s; }     /* الزرار */
-.login-box > *:nth-child(8) { animation-delay: 1.15s; }  /* رسالة الخطأ */
-
+.login-box > *:nth-child(1) { animation-delay: 0.1s; }
+.login-box > *:nth-child(2) { animation-delay: 0.25s; }
+.login-box > *:nth-child(3) { animation-delay: 0.4s; }
+.login-box > *:nth-child(4) { animation-delay: 0.55s; }
+.login-box > *:nth-child(5) { animation-delay: 0.7s; }
+.login-box > *:nth-child(6) { animation-delay: 0.85s; }
+.login-box > *:nth-child(7) { animation-delay: 1s; }
+.login-box > *:nth-child(8) { animation-delay: 1.15s; }
 
 @media (max-width: 700px) {
     .character { display: none; }
-}
-
-Makeup {
-   background-color: yellow;
-   boarder: 2px solid;
-   padding: 5px;
-
 }

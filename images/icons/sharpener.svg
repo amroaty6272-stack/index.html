@@ -1,0 +1,7 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" fill="#eeebe6"/>
+  <rect x="120" y="140" width="130" height="120" rx="14" fill="#1c1c1c"/>
+  <text x="185" y="195" font-family="Georgia, serif" font-size="20" fill="#ffffff" text-anchor="middle" font-style="italic">Nours</text>
+  <circle cx="250" cy="200" r="10" fill="#1c1c1c"/>
+  <path d="M250 150 L290 180 L290 220 L250 250 Z" fill="#3a3a3a"/>
+</svg>

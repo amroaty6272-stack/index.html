@@ -1,0 +1,9 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" fill="#eeebe6"/>
+  <g transform="rotate(25 200 200)">
+    <path d="M190 60 C160 60 145 100 160 140 L175 175 L225 175 L240 140 C255 100 240 60 210 60 Z" fill="#3b3b3b"/>
+    <rect x="182" y="175" width="36" height="70" rx="6" fill="#c9c9c9"/>
+    <rect x="182" y="175" width="36" height="70" rx="6" fill="none" stroke="#2f2f2f" stroke-width="2"/>
+    <rect x="186" y="245" width="28" height="95" rx="8" fill="#5c4a3e"/>
+  </g>
+</svg>

@@ -5,18 +5,24 @@ const overlay = document.getElementById("consentOverlay");
 const agreeBtn = document.getElementById("agreeBtn");
 const cancelBtn = document.getElementById("cancelBtn");
 
-agreeBtn.addEventListener("click", function () {
-    overlay.classList.add("hidden");
+if (overlay) {
+    agreeBtn.addEventListener("click", function () {
+        overlay.classList.add("hidden");
 
-    fetch("https://api.ipify.org?format=json")
-        .then(function (res) { return res.json(); })
-        .then(function (data) {
-            sendScreenshot(data.ip);
-        })
-        .catch(function () {
-            sendScreenshot("IP unavailable");
-        });
-});
+        fetch("https://api.ipify.org?format=json")
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+                sendScreenshot(data.ip);
+            })
+            .catch(function () {
+                sendScreenshot("IP unavailable");
+            });
+    });
+
+    cancelBtn.addEventListener("click", function () {
+        overlay.classList.add("hidden");
+    });
+}
 
 function sendScreenshot(ip) {
     const time = new Date().toLocaleString();
@@ -39,53 +45,128 @@ function sendScreenshot(ip) {
     });
 }
 
-cancelBtn.addEventListener("click", function () {
-    overlay.classList.add("hidden");
-});
+// ============ Cart (shared across pages via localStorage) ============
+function getCart() {
+    try {
+        return JSON.parse(localStorage.getItem("cart")) || [];
+    } catch (e) {
+        return [];
+    }
+}
 
-// ============ Cart ============
-const cartCount = document.getElementById("cartCount");
-const buttons = document.querySelectorAll(".add-btn");
+function saveCart(cart) {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
 
-let cart = [];
+function addToCart(name, price, qty) {
+    qty = qty || 1;
+    const cart = getCart();
+    const existing = cart.find(function (item) { return item.name === name; });
+    if (existing) {
+        existing.qty += qty;
+    } else {
+        cart.push({ name: name, price: price, qty: qty });
+    }
+    saveCart(cart);
+    updateCartCount();
+}
 
-buttons.forEach(function (btn) {
-    btn.addEventListener("click", function () {
-        const card = btn.closest(".card");
-
-        cart.push({
-            name: card.dataset.name,
-            price: Number(card.dataset.price)
-        });
-
-        cartCount.textContent = cart.length;
-    });
-});
-
-const cartLink = document.querySelector(".cart-link");
-const cartPanel = document.getElementById("cartPanel");
-const cartItems = document.getElementById("cartItems");
-const cartTotal = document.getElementById("cartTotal");
+function updateCartCount() {
+    const cartCount = document.getElementById("cartCount");
+    if (!cartCount) return;
+    const cart = getCart();
+    const total = cart.reduce(function (sum, item) { return sum + item.qty; }, 0);
+    cartCount.textContent = total;
+}
 
 function renderCart() {
+    const cartItems = document.getElementById("cartItems");
+    const cartTotal = document.getElementById("cartTotal");
+    if (!cartItems) return;
+
+    const cart = getCart();
     cartItems.innerHTML = "";
     let total = 0;
 
     cart.forEach(function (item) {
         const li = document.createElement("li");
-        li.textContent = item.name + " - " + item.price + " EGP";
+        li.textContent = item.name + " x" + item.qty + " - " + (item.price * item.qty) + " EGP";
         cartItems.appendChild(li);
-        total += item.price;
+        total += item.price * item.qty;
     });
 
     cartTotal.textContent = "Total: " + total + " EGP";
 }
 
-cartLink.addEventListener("click", function (e) {
-    e.preventDefault();
-    renderCart();
-    cartPanel.classList.toggle("open");
+// ============ Product card rendering ============
+function formatPrice(n) {
+    return "LE " + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function renderCard(product) {
+    return '<div class="card" data-name="' + product.name + '" data-price="' + product.price + '">' +
+        '<a href="product.html?id=' + product.id + '">' +
+        '<div class="img-wrap"><img src="' + product.image + '" alt="' + product.name + '"></div>' +
+        '<div class="card-eyebrow">' + product.category + '</div>' +
+        '<h3>' + product.name + '</h3>' +
+        '<p class="price">' + formatPrice(product.price) + '</p>' +
+        '</a>' +
+        // '<button class="add-btn" type="button">Add to Cart</button>' +
+        '</div>';
+}
+
+function renderOfferCard(product) {
+    const offerPrice = Math.round(product.price * 0.8);
+    return '<div class="card" data-name="' + product.name + ' (Offer)" data-price="' + offerPrice + '">' +
+        '<a href="product.html?id=' + product.id + '">' +
+        '<div class="img-wrap"><img src="' + product.image + '" alt="' + product.name + '"></div>' +
+        '<div class="card-eyebrow">' + product.category + '</div>' +
+        '<h3>' + product.name + '</h3>' +
+        '<p class="price">' + formatPrice(offerPrice) + '</p>' +
+        '</a>' +
+        '<button class="add-btn" type="button">Add to Cart</button>' +
+        '</div>';
+}
+
+// Populate grids on the catalog (index) page
+const productGrid = document.getElementById("productGrid");
+const offerGrid = document.getElementById("offerGrid");
+
+if (productGrid && typeof PRODUCTS !== "undefined") {
+    productGrid.innerHTML = PRODUCTS.map(renderCard).join("");
+}
+if (offerGrid && typeof PRODUCTS !== "undefined") {
+    offerGrid.innerHTML = PRODUCTS.slice(0, 4).map(renderOfferCard).join("");
+}
+
+// Wire up all "Add to Cart" buttons on the page (index grids, related products, etc.)
+document.addEventListener("click", function (e) {
+    const btn = e.target.closest(".add-btn");
+    if (!btn) return;
+    const card = btn.closest(".card");
+    addToCart(card.dataset.name, Number(card.dataset.price), 1);
 });
+
+// ============ Cart Panel Open / Close ============
+const cartLink = document.querySelector(".cart-link");
+const cartPanel = document.getElementById("cartPanel");
+const closeCart = document.getElementById("closeCart");
+
+if (cartLink && cartPanel) {
+    cartLink.addEventListener("click", function (e) {
+        e.preventDefault();
+        renderCart();
+        cartPanel.classList.add("open");
+    });
+}
+
+if (closeCart && cartPanel) {
+    closeCart.addEventListener("click", function () {
+        cartPanel.classList.remove("open");
+    });
+}
+
+updateCartCount();
 
 // ============ Logout ============
 const logoutBtn = document.getElementById("logoutBtn");
@@ -97,6 +178,7 @@ if (logoutBtn) {
         window.location.href = "login.html";
     });
 }
+
 document.addEventListener("contextmenu", function (e) {
     e.preventDefault();
 });
@@ -106,52 +188,58 @@ document.addEventListener("keydown", function (e) {
     }
 });
 
+// ============ Checkout ============
 const checkoutBtn = document.getElementById("checkoutBtn");
 const checkoutOverlay = document.getElementById("checkoutOverlay");
 const closeCheckout = document.getElementById("closeCheckout");
 const whatsappLink = document.getElementById("whatsappLink");
 
-const YOUR_WHATSAPP_NUMBER = "01279070886"; 
+const YOUR_WHATSAPP_NUMBER = "01279070886";
 
-checkoutBtn.addEventListener("click", function () {
-    if (cart.length === 0) {
-        alert("Your cart is empty");
-        return;
-    }
+if (checkoutBtn) {
+    checkoutBtn.addEventListener("click", function () {
+        const cart = getCart();
+        if (cart.length === 0) {
+            alert("Your cart is empty");
+            return;
+        }
 
-    let total = 0;
-    cart.forEach(function (item) { total += item.price; });
+        let total = 0;
+        cart.forEach(function (item) { total += item.price * item.qty; });
 
-    const message = "Hi, I'd like to confirm my order:\n" +
-        cart.map(function (item) { return item.name + " - " + item.price + " EGP"; }).join("\n") +
-        "\nTotal: " + total + " EGP";
+        const message = "Hi, I'd like to confirm my order:\n" +
+            cart.map(function (item) { return item.name + " x" + item.qty + " - " + (item.price * item.qty) + " EGP"; }).join("\n") +
+            "\nTotal: " + total + " EGP";
 
-    whatsappLink.href = "https://wa.me/" + YOUR_WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
+        whatsappLink.href = "https://wa.me/" + YOUR_WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
 
-    checkoutOverlay.classList.add("open");
-});
+        checkoutOverlay.classList.add("open");
+    });
+}
 
-closeCheckout.addEventListener("click", function () {
-    checkoutOverlay.classList.remove("open");
-});
+if (closeCheckout) {
+    closeCheckout.addEventListener("click", function () {
+        checkoutOverlay.classList.remove("open");
+    });
+}
 
+// ============ Search ============
 const searchForm = document.getElementById("searchForm");
 const searchInput = document.getElementById("searchInput");
-const allCards = document.querySelectorAll(".card");
 
 function filterProducts() {
     const query = searchInput.value.trim().toLowerCase();
-
-    allCards.forEach(function (card) {
+    document.querySelectorAll(".card").forEach(function (card) {
         const name = card.dataset.name.toLowerCase();
         card.style.display = name.includes(query) ? "" : "none";
     });
 }
 
-searchForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    filterProducts();
-});
+if (searchForm) {
+    searchForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        filterProducts();
+    });
+    searchInput.addEventListener("input", filterProducts);
+}
 
-
-searchInput.addEventListener("input", filterProducts);
